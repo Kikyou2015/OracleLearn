@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcw.mapper.UserEntityMapper">
+
+    <resultMap id="BaseResultMap" type="com.zcw.entity.User">
+        <id column="UT_ID" property="utId" jdbcType="BIGINT"></id>
+        <result column="UT_NAME" property="utName" jdbcType="VARCHAR"></result>
+        <result column="UT_EMAIL" property="utEmail" jdbcType="VARCHAR"></result>
+        <result column="UT_ADDR" property="utAddr" jdbcType="VARCHAR"></result>
+        <result column="UT_GENDER" property="utGender" jdbcType="TINYINT"></result>
+        <result column="UT_ORGID" property="utOrgid" jdbcType="VARCHAR"></result>
+        <result column="CREATE_TIME" property="utCreateTime" jdbcType="TIMESTAMP"></result>
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT * FROM USER_T
+    </select>
+
+    <insert id="insert" parameterType="com.zcw.entity.User">
+        INSERT INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME) VALUES (seq_user.nextval,#{utName},#{utEmail},#{utAddr},#{utGender},#{utOrgid},#{utCreateTime})
+    </insert>
+
+    <update id="update" parameterType="com.zcw.entity.User">
+        UPDATE USER_T SET UT_NAME=#{utName},UT_EMAIL=#{utEmail},UT_ADDR=#{utAddr},UT_GENDER=#{utGender},UT_ORGID=#{utOrgid},CREATE_TIME=#{utCreateTime} WHERE UT_ID = #{utId}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        DELETE FROM USER_T WHERE UT_ID = #{id}
+    </delete>
+
+    <select id="getUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT * FROM USER_T WHERE UT_ID = #{id}
+    </select>
+</mapper>

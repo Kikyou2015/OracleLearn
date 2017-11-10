@@ -3,11 +3,15 @@ package com.zcw.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+@ToString
+public class User {
 
     private Long utId;
 
@@ -21,10 +25,5 @@ public class UserEntity {
 
     private String utOrgid;
 
-    @Override
-    public String toString() {
-        return "UserEntity [utId=" + utId + ", utName=" + utName + ", utEmail=" + utEmail + ", utAddr=" + utAddr
-                + ", utGender=" + utGender + ", utOrgid=" + utOrgid + "]";
-    }
-
+    private Date utCreateTime;
 }
