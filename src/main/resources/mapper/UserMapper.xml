@@ -17,7 +17,7 @@
     </select>
 
     <insert id="insert" parameterType="com.zcw.entity.User">
-        INSERT INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME) VALUES (seq_user.nextval,#{utName},#{utEmail},#{utAddr},#{utGender},#{utOrgid},#{utCreateTime})
+        INSERT INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME) VALUES (seq_user.nextval,#{utName},#{utEmail, jdbcType=VARCHAR},#{utAddr},#{utGender},#{utOrgid},#{utCreateTime})
     </insert>
 
     <update id="update" parameterType="com.zcw.entity.User">

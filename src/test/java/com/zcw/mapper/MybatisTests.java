@@ -28,7 +28,7 @@ public class MybatisTests {
 
     @Test
     public void insertTest() {
-        userEntityMapper.insert(new User(Long.valueOf("0"), "developer2", "developer2@qq.com", "wuhan", Short.valueOf("1"), "sanxin", new Date()));
+        userEntityMapper.insert(new User(Long.valueOf("0"), "developer3", null, "wuhan", Short.valueOf("1"), "sanxin", new Date()));
     }
 
     @Test
