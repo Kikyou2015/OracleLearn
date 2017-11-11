@@ -52,10 +52,10 @@ public class MybatisTests {
 
     @Test
     public void insertBatchTests() {
-        int count = 1000;
+        int count = 5;
         List<User> userList = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            User user = new User(Long.valueOf(i + 100), "user" + i, "user" + i + "@qq.com", "wuhan", Short.valueOf("0"), "sanxin", new Date());
+        for (int i = 1; i <= count; i++) {
+            User user = new User(Long.valueOf(i), "user" + i, "user" + i + "@qq.com", "wuhan", Short.valueOf("0"), "sanxin", new Date());
             userList.add(user);
         }
         userEntityMapper.insertBatch(userList);

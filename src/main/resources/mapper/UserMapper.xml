@@ -33,11 +33,14 @@
     </select>
 
     <insert id="insertBatch" parameterType="java.util.List">
-        INSERT ALL
-        <foreach collection="list" item="uItem" index="index" separator="">
-            INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME) VALUES
-            (#{uItem.utId},#{uItem.utName},#{uItem.utEmail},#{uItem.utAddr},#{uItem.utGender},#{uItem.utOrgid},#{uItem.utCreateTime})
+        INSERT INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME)
+        SELECT seq_user.nextval userId, A.*
+        FROM(
+        <foreach collection="list" item="uItem" index="index" separator="union all">
+            SELECT
+            #{uItem.utName},#{uItem.utEmail},#{uItem.utAddr},#{uItem.utGender},#{uItem.utOrgid},#{uItem.utCreateTime}
+            FROM dual
         </foreach>
-        SELECT 1 FROM DUAL
+        )A
     </insert>
 </mapper>
