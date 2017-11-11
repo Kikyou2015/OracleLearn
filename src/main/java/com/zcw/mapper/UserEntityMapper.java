@@ -15,4 +15,6 @@ public interface UserEntityMapper {
     void delete(Long id);
 
     User getUserById(Long id);
+
+    void insertBatch(List<User> userList);
 }

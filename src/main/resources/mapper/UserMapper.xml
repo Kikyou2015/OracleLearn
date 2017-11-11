@@ -31,4 +31,13 @@
     <select id="getUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
         SELECT * FROM USER_T WHERE UT_ID = #{id}
     </select>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        INSERT ALL
+        <foreach collection="list" item="uItem" index="index" separator="">
+            INTO USER_T (UT_ID,UT_NAME,UT_EMAIL,UT_ADDR,UT_GENDER,UT_ORGID,CREATE_TIME) VALUES
+            (#{uItem.utId},#{uItem.utName},#{uItem.utEmail},#{uItem.utAddr},#{uItem.utGender},#{uItem.utOrgid},#{uItem.utCreateTime})
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
 </mapper>

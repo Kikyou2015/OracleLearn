@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,7 +30,7 @@ public class MybatisTests {
 
     @Test
     public void insertTest() {
-        userEntityMapper.insert(new User(Long.valueOf("0"), "developer3", null, "wuhan", Short.valueOf("1"), "sanxin", new Date()));
+        userEntityMapper.insert(new User(Long.valueOf("0"), "designer2", null, "wuhan", Short.valueOf("1"), "sanxin", new Date()));
     }
 
     @Test
@@ -46,5 +48,16 @@ public class MybatisTests {
         User u = userEntityMapper.getUserById(Long.valueOf("108"));
         Assert.assertNotNull(u);
         log.info(u.toString());
+    }
+
+    @Test
+    public void insertBatchTests() {
+        int count = 1000;
+        List<User> userList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            User user = new User(Long.valueOf(i + 100), "user" + i, "user" + i + "@qq.com", "wuhan", Short.valueOf("0"), "sanxin", new Date());
+            userList.add(user);
+        }
+        userEntityMapper.insertBatch(userList);
     }
 }
