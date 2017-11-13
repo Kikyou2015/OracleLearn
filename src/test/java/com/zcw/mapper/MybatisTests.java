@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -59,5 +57,16 @@ public class MybatisTests {
             userList.add(user);
         }
         userEntityMapper.insertBatch(userList);
+    }
+
+    @Test
+    public void proSelectTest() {
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("user_id", Long.valueOf("183"));
+        params.put("user_name", "");
+        params.put("user_email", "");
+        params.put("u_create_time", new Date());
+        userEntityMapper.proSelect(params);
+        log.info("userId = {}, userName = {}, userEmail = {}, createTime = {}", params.get("user_id"), params.get("user_name"), params.get("user_email"), params.get("u_create_time"));
     }
 }

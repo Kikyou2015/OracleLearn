@@ -3,6 +3,7 @@ package com.zcw.mapper;
 import com.zcw.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserEntityMapper {
 
@@ -17,4 +18,6 @@ public interface UserEntityMapper {
     User getUserById(Long id);
 
     void insertBatch(List<User> userList);
+
+    void proSelect(Map<String, Object> params);
 }

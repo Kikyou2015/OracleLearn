@@ -43,4 +43,17 @@
         </foreach>
         )A
     </insert>
+
+    <parameterMap id="paramsMap" type="java.util.HashMap">
+        <parameter property="user_id" jdbcType="NUMERIC" javaType="java.lang.Long" mode="IN"></parameter>
+        <parameter property="user_name" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"></parameter>
+        <parameter property="user_email" jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT"></parameter>
+        <parameter property="u_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" mode="OUT"></parameter>
+    </parameterMap>
+
+    <select id="proSelect" parameterMap="paramsMap" statementType="CALLABLE">
+        <![CDATA[
+            {call pro_select(?,?,?,?)}
+        ]]>
+    </select>
 </mapper>
