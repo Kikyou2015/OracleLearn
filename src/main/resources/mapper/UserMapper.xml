@@ -56,4 +56,14 @@
             {call pro_select(?,?,?,?)}
         ]]>
     </select>
+
+    <select id="proSelectAll" parameterType="java.util.Map" statementType="CALLABLE">
+        <![CDATA[
+          {
+            call pro_select_all(
+              #{u_list,mode=OUT,jdbcType=CURSOR,javaType=java.sql.ResultSet,resultMap=BaseResultMap}
+            )
+          }
+        ]]>
+    </select>
 </mapper>

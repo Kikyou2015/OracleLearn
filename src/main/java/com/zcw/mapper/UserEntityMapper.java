@@ -20,4 +20,6 @@ public interface UserEntityMapper {
     void insertBatch(List<User> userList);
 
     void proSelect(Map<String, Object> params);
+
+    void proSelectAll(Map<String, Object> params);
 }

@@ -2,6 +2,8 @@ package com.zcw.mapper;
 
 import com.zcw.entity.User;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.OracleTypes;
+import oracle.jdbc.oracore.OracleType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +55,7 @@ public class MybatisTests {
         int count = 5;
         List<User> userList = new ArrayList<>();
         for (int i = 1; i <= count; i++) {
-            User user = new User(Long.valueOf(i), "user" + i, "user" + i + "@qq.com", "wuhan", Short.valueOf("0"), "sanxin", new Date());
+            User user = new User(Long.valueOf(i), "YYYYYYYY" + i, "YYYYYYYY" + i + "@qq.com", "wuhan", Short.valueOf("0"), "sanxin", new Date());
             userList.add(user);
         }
         userEntityMapper.insertBatch(userList);
@@ -68,5 +70,12 @@ public class MybatisTests {
         params.put("u_create_time", new Date());
         userEntityMapper.proSelect(params);
         log.info("userId = {}, userName = {}, userEmail = {}, createTime = {}", params.get("user_id"), params.get("user_name"), params.get("user_email"), params.get("u_create_time"));
+    }
+
+    @Test
+    public void proSelectAllTest() {
+        Map<String, Object> params = new HashMap<>();
+        userEntityMapper.proSelectAll(params);
+        ((List<User>) params.get("u_list")).iterator().forEachRemaining(user -> log.info(user.toString()));
     }
 }
